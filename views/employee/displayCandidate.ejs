@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link type="text/css" rel="stylesheet" href="/css/homePageStyle.css" />
+        <!-- link for icons -->
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Questrial&display=swap"
+          rel="stylesheet"
+        />
+
         <title>
             Candidate Account Info
         </title>
         <!-- <link rel="stylesheet" href="/style.css"> -->
     </head>
+
     <body>
-        <h1>Welcome <%= candidate.CandidateName %>,</h1>
+        <%- include("../Components/candidateHeader", {candidateId: candidate._id}); -%>
+
+        <section class="top">
+            <h1>Welcome <%= candidate.CandidateName %>,</h1>
         
+            <h2>Your Job Postings</h2>
+            <form>
+                <input class="postings" type="submit" value="Cashier 1" />
+            </form>
+            <form>
+                <input class="postings" type="submit" value="Cashier 2" />
+            </form>
+
+        </section>
+        <section class="matchSection">
+            <h3>Your matches</h3>
+              
+          </section>
     </body>
 </html>
+
