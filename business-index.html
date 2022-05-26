@@ -49,7 +49,7 @@
                 numError = document.getElementById('numError'); 
                 input.addEventListener('keydown', function(e){
                     key = e.key;
-                    if (!(isFinite(key) || key == 'Backspace')){ // If try to type invalid input
+                    if (!(isFinite(key) || key == 'Backspace'|| key=='Tab')){ // If try to type invalid input
                         numError.textContent = "Only enter numbers."
                         numError.style.color = "red"
                     } else { // Valid input
@@ -94,7 +94,7 @@
                 } else {
                     if(isFinite(key)) numCount++; // if key is a num
                     // Allow numbers, dashes, and backspace input
-                    if (!(isFinite(key) || key == '-' || key == 'Backspace')){ // If try to type invalid input
+                    if (!(isFinite(key) || key == '-' || key == 'Backspace' || key == 'Tab')){ // If try to type invalid input
                         e.preventDefault(); // Key won't show up
                         error.textContent = "Please only enter numbers or dashes."
                         error.style.color = "red"
