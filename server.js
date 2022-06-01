@@ -132,14 +132,6 @@ app.get("/businessInfo/:bus_id/:ros_id", (req, res) => {
       return locationMatchCandidates;
     });
 
-    // getting candidates with location matching availabilities
-    locationMatchCandidates = locationMatchHelp.listCandidates().then((allCandidates) => {
-      //console.log(allCandidates);
-      let locationMatchCandidates = locationMatchHelp.getCandidates(result, allCandidates);
-      //console.log("Matched candid", matchCandidates);
-      return locationMatchCandidates;
-    });
-
     //console.log("Match candidates promise: ", matchCandidates);
     locationMatchCandidates.then(function(matches) {
       console.log("Match candidates result", result);
@@ -157,14 +149,15 @@ app.get("/businessInfo/:bus_id/:ros_id", (req, res) => {
       return matchCandidates;
     });
 
-    //console.log("Match candidates promise: ", matchCandidates);
-    matchCandidates.then(function(matches) {
-      console.log("Match candidates result", result);
-      res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
-    }).catch(function() {
-      console.log("Match candidates promise rejected");
-      res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
-    });
+    // //console.log("Match candidates promise: ", matchCandidates);
+    // matchCandidates.then(function(matches) {
+    //   console.log("Match candidates result", result);
+    //   res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
+    // }).catch(function() {
+    //   console.log("Match candidates promise rejected");
+    //   res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
+    // });
+
   });
 });
 
