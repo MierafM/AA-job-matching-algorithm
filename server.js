@@ -128,7 +128,11 @@ app.get("/businessInfo/:bus_id/:ros_id", (req, res) => {
     locationMatchCandidates = locationMatchHelp.listCandidates().then((allCandidates) => {
       //console.log(allCandidates);
       let locationMatchCandidates = locationMatchHelp.getCandidates(result, allCandidates);
+      // console.log(length(locationMatchCandidates));
+      // let bothMatchCandidates = matchHelp.getCandidates(result, locationMatchCandidates);
+      // console.log(length(bothMatchCandidates));
       //console.log("Matched candid", matchCandidates);
+      // return bothMatchCandidates;
       return locationMatchCandidates;
     });
 
@@ -136,7 +140,7 @@ app.get("/businessInfo/:bus_id/:ros_id", (req, res) => {
     locationMatchCandidates.then(function(matches) {
       console.log("Match candidates result", result);
       res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
-    }).catch(function() {
+    }).catch(function(matches) {
       console.log("Match candidates promise rejected");
       res.render("./employer/displayBusiness.ejs", { business: result, matches: matches });
     });

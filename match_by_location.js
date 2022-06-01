@@ -4,6 +4,7 @@ const { json } = require("express/lib/response");
 const { Code } = require("mongodb");
 var mongoose = require("mongoose");
 const moment = require("moment");
+const { readTimeData, compareHours } = require("./schedule");
 var ObjectId = require("mongodb").ObjectId;
 
 var MongoClient = require("mongodb").MongoClient;
@@ -45,14 +46,20 @@ function readCandidateLocationData(scheduler) {
 function getCandidates(businessProfile, candidatesList) {
   matchedCandindates = [];
   let businessLocation = readBusinessLocationData(businessProfile);
+  let businessHours = readTimeData(candidate);
 
   candidatesList.forEach(function (candidate, index) {
     let candidateLocation = readCandidateLocationData(candidate);
+    let candidateHours = readTimeData(candidate);
 
     /* Check if the candidate's zip code is the SAME as the employer */
     // Ideally, I would want to check if the candidate is in the same county as the employer
-    if (candidateLocation == businessLocation) {
-        matchedCandindates.push(candidate);
+    if ((candidateLocation == businessLocation) && (candidateHours.length >= businessHours.length)) {
+        let check = compareHours(businessHours, candidateHours);
+        if(check) {
+            matchedCandindates.push(candidate);
+        }
+
     }
   });
 

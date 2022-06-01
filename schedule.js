@@ -48,6 +48,7 @@ function readTimeData(scheduler) {
 
   array_of_times.forEach(function (unparsed_time, index) {
     cleaned_time = clean_time(unparsed_time);
+    console.log(cleaned_time)
     json_time = JSON.parse(cleaned_time);
 
     const new_start = new Date(json_time.start);
